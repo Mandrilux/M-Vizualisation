@@ -4,6 +4,8 @@ import csv
 import os
 import errno
 from numpy import genfromtxt
+import plotly.express as px
+
 
 
 def get_name_csv():
