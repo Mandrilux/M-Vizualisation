@@ -2,10 +2,7 @@
 import sys
 import csv
 import os
-import errno
 from numpy import genfromtxt
-import plotly.express as px
-import plotly.graph_objects as go
 
 
 def get_name_csv():
