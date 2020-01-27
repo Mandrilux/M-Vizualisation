@@ -20,4 +20,11 @@ if __name__ == "__main__":
     except IOError as e :
         print (str(e))
         sys.exit(42)
+
+
+    """fig = px.imshow([[1, 20, 30],
+                 [20, 1, 60],
+                 [30, 60, 1],
+                 [12, 17, 30]])
+    fig.show()"""
     sys.exit(0)
