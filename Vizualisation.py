@@ -2,8 +2,8 @@
 import sys
 import csv
 import os
+import plotly.express as px
 from numpy import genfromtxt
-
 
 def get_name_csv():
     dir = os.listdir('./')
