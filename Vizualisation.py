@@ -4,6 +4,7 @@ import csv
 import os
 import plotly.express as px
 from numpy import genfromtxt
+from io import StringIO
 
 def get_name_csv():
     dir = os.listdir('./')
@@ -16,12 +17,12 @@ if __name__ == "__main__":
     file_data = get_name_csv()
     print ("Found DataFile %s"% (file_data))
     try:
-        data = genfromtxt(file_data, delimiter=',')
+        data = genfromtxt(file_data, delimiter=",", dtype="|U", autostrip=True)
     except IOError as e :
         print (str(e))
         sys.exit(42)
 
-
+    #print (data[1][1])
     """fig = px.imshow([[1, 20, 30],
                  [20, 1, 60],
                  [30, 60, 1],
