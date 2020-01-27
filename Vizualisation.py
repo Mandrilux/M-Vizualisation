@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 import sys
-import csv
 import os
 import plotly.graph_objects as go
-from numpy import genfromtxt
-from io import StringIO
+from numpy import genfromtxt, array
+import plotly.express as px
+import plotly.io as pio
+import statsmodels.api as sm
+
+pio.renderers.default = "browser"
 
 
 def get_name_csv():
@@ -24,34 +27,22 @@ if __name__ == "__main__":
         print(str(e))
         sys.exit(42)
 
-    age_range = 16
-
-    for l in range(1, len(data)):
-        li = data[l]
-        if int(li[2]) > age_range:
-            age_range = int(li[2])
-
-    format_data = []
-    municipalites = []
+    format_data = [{}] * (len(data) - 1)
 
     for lin in range(1, len(data)):
         line = data[lin]
-        if line[7] in municipalites:
-            line_index = municipalites.index(line[7])
-            print(int(line[2]), age_range)
-            format_data[line_index][int(line[2]) - 1] += 1
-        else:
-            municipalites.append(line[7])
-            format_data.append([0] * age_range)
+        format_data[lin - 1] = {
+            "place": line[7],
+            "age": int(line[2]),
+            "size": 50
+        }
 
-    ages = []
-    for ind in range(16, age_range):
-        ages.append(ind)
+    for lin in range(1, len(data)):
+        line = data[lin]
+        format_data[lin - 1]["size"] = len([x for x in format_data if x.get("age") == format_data[lin - 1]["age"]])
 
-    fig = go.Figure(data=go.Heatmap(
-        z=format_data,
-        x=ages,
-        y=municipalites,
-        hoverongaps=False))
-    fig.show()
+    fig = px.scatter(format_data, x="age", y="place", color="place", opacity=0.1, size="size")
+
+    fig.write_html('tmp.html', auto_open=True)
+
     sys.exit(0)
