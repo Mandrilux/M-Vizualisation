@@ -3,9 +3,10 @@ import sys
 import os
 import plotly.graph_objects as go
 from numpy import genfromtxt, array
-import plotly.express as px
 import plotly.io as pio
 import statsmodels.api as sm
+from ScatterViz import ScatterViz
+
 
 def get_name_csv():
     dir = os.listdir('./')
@@ -27,25 +28,6 @@ if __name__ == "__main__":
     except IOError as e:
         print(str(e))
         sys.exit(42)
-
-    format_data = [{}] * (len(data) - 1)
-
-    for lin in range(1, len(data)):
-        line = data[lin]
-        format_data[lin - 1] = {
-            "place": line[7],
-            "age": int(line[2]),
-            "size": 50
-        }
-
-    for lin in range(1, len(data)):
-        line = data[lin]
-        format_data[lin - 1]["size"] = len([x for x in format_data if x.get("age") == format_data[lin - 1]["age"]])
-
     print("Parsing dataFile %s" % file_data)
-    print("Generate graph : please wait")
-    fig = px.scatter(format_data, x="age", y="place", color="place", opacity=0.1, size="size")
-
-    fig.write_html('tmp.html', auto_open=True)
-
+    ScatterViz(data)
     sys.exit(0)
