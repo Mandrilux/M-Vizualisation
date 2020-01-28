@@ -7,9 +7,6 @@ import plotly.express as px
 import plotly.io as pio
 import statsmodels.api as sm
 
-pio.renderers.default = "browser"
-
-
 def get_name_csv():
     dir = os.listdir('./')
     for x in range(0, len(dir)):
@@ -26,6 +23,7 @@ if __name__ == "__main__":
     print("Found DataFile %s" % file_data)
     try:
         data = genfromtxt(file_data, delimiter=",", dtype="|U", autostrip=True)
+        print("Read DataFile %s" % file_data)
     except IOError as e:
         print(str(e))
         sys.exit(42)
@@ -44,6 +42,8 @@ if __name__ == "__main__":
         line = data[lin]
         format_data[lin - 1]["size"] = len([x for x in format_data if x.get("age") == format_data[lin - 1]["age"]])
 
+    print("Parsing dataFile %s" % file_data)
+    print("Generate graph : please wait")
     fig = px.scatter(format_data, x="age", y="place", color="place", opacity=0.1, size="size")
 
     fig.write_html('tmp.html', auto_open=True)
