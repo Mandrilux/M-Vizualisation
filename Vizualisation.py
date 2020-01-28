@@ -20,6 +20,9 @@ def get_name_csv():
 
 if __name__ == "__main__":
     file_data = get_name_csv()
+    if file_data == "":
+        print("No csv found")
+        sys.exit(42)
     print("Found DataFile %s" % file_data)
     try:
         data = genfromtxt(file_data, delimiter=",", dtype="|U", autostrip=True)
