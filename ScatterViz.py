@@ -1,7 +1,7 @@
 import plotly.express as px
 
 
-def ScatterViz(data):
+def ScatterViz(data, flag):
     format_data = [{}] * (len(data) - 1)
 
     for lin in range(1, len(data)):
@@ -20,4 +20,5 @@ def ScatterViz(data):
     print("Generate graph : please wait")
     fig = px.scatter(format_data, x="age", y="place", color="place", opacity=0.1, size="size")
 
-    fig.write_html('tmp.html', auto_open=True)
+    name_file = "tmp_" + flag + ".html"
+    fig.write_html(name_file, auto_open=True)

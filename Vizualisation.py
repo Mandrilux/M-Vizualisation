@@ -43,13 +43,16 @@ if __name__ == "__main__":
     print ("Only girl : press F")
     print ("All : Any key")
     type = input("Please enter any Key : ").split(' ')[0]
+    flag = "all"
     if type.upper() == "M":
         print ("Loading man data")
         data = getDateWithType(data, 1)
+        flag = "man"
     elif type.upper() == "F":
         print ("Loading female data")
         data = getDateWithType(data, 2)
+        flag = "female"
 
     print("Parsing dataFile %s" % file_data)
-    ScatterViz(data)
+    ScatterViz(data,flag )
     sys.exit(0)
