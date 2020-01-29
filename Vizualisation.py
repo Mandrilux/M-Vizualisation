@@ -15,7 +15,8 @@ def get_name_csv():
             return dir[x]
     return ""
 
-def getDateWithType(data , type):
+
+def getDateWithType(data, type):
     newData = []
     for i in range(1, len(data)):
         cmp = data[i][3].replace('"', '')
@@ -25,6 +26,7 @@ def getDateWithType(data , type):
         elif type == 2 and cmp == "F":
             newData.append(data[i])
     return newData
+
 
 if __name__ == "__main__":
     file_data = get_name_csv()
@@ -38,21 +40,21 @@ if __name__ == "__main__":
     except IOError as e:
         print(str(e))
         sys.exit(42)
-    print ("What type do you want ?")
-    print ("Only man : press M")
-    print ("Only girl : press F")
-    print ("All : Any key")
+    print("What type do you want ?")
+    print("Only Male : press M")
+    print("Only Female : press F")
+    print("All : Any key")
     type = input("Please enter any Key : ").split(' ')[0]
     flag = "all"
     if type.upper() == "M":
-        print ("Loading man data")
+        print("Loading man data")
         data = getDateWithType(data, 1)
         flag = "man"
     elif type.upper() == "F":
-        print ("Loading female data")
+        print("Loading female data")
         data = getDateWithType(data, 2)
         flag = "female"
 
     print("Parsing dataFile %s" % file_data)
-    ScatterViz(data,flag )
+    ScatterViz(data, flag)
     sys.exit(0)
