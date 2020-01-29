@@ -1,24 +1,13 @@
 import plotly.express as px
 
+from DataProcessing import FormatData
+
 
 def ScatterViz(data, flag):
-    format_data = [{}] * (len(data) - 1)
-
-    for lin in range(1, len(data)):
-        line = data[lin]
-        format_data[lin - 1] = {
-            "place": line[7],
-            "age": int(line[2]),
-            "size": 50
-        }
-
-    for lin in range(1, len(data)):
-        line = data[lin]
-        format_data[lin - 1]["size"] = len([x for x in format_data if x.get("age") == format_data[lin - 1]["age"]])
-
+    format_data = FormatData(data)
 
     print("Generate graph : please wait")
     fig = px.scatter(format_data, x="age", y="place", color="place", opacity=0.1, size="size")
 
-    name_file = "tmp_" + flag + ".html"
+    name_file = "scatter_" + flag + ".html"
     fig.write_html(name_file, auto_open=True)

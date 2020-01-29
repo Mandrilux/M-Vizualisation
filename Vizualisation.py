@@ -5,6 +5,8 @@ import plotly.graph_objects as go
 from numpy import genfromtxt, array
 import plotly.io as pio
 import statsmodels.api as sm
+
+from HistogramViz import HistogramViz
 from ScatterViz import ScatterViz
 
 
@@ -57,4 +59,5 @@ if __name__ == "__main__":
 
     print("Parsing dataFile %s" % file_data)
     ScatterViz(data, flag)
+    HistogramViz(data, flag)
     sys.exit(0)
