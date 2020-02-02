@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import os
-import plotly.graph_objects as go
 from numpy import genfromtxt
-import plotly.io as pio
 
 
 from HistogramViz import HistogramViz
