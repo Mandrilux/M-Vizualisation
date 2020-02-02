@@ -10,7 +10,6 @@ def FormatData(data):
         }
 
     for lin in range(1, len(data)):
-        line = data[lin]
         format_data[lin - 1]["size"] = len([x for x in format_data if x.get("age") == format_data[lin - 1]["age"]])
 
     return format_data

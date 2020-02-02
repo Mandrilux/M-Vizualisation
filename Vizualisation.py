@@ -18,7 +18,7 @@ def get_name_csv():
     return ""
 
 
-def getDateWithType(data, type):
+def getDataWithType(data, type):
     newData = []
     for i in range(1, len(data)):
         cmp = data[i][3].replace('"', '')
@@ -45,16 +45,16 @@ if __name__ == "__main__":
     print("What type do you want ?")
     print("Only Male : press M")
     print("Only Female : press F")
-    print("All : Any key")
+    print("All : Any other key")
     type = input("Please enter any Key : ").split(' ')[0]
     flag = "all"
     if type.upper() == "M":
-        print("Loading man data")
-        data = getDateWithType(data, 1)
+        print("Loading male data")
+        data = getDataWithType(data, 1)
         flag = "man"
     elif type.upper() == "F":
         print("Loading female data")
-        data = getDateWithType(data, 2)
+        data = getDataWithType(data, 2)
         flag = "female"
 
     print("Parsing dataFile %s" % file_data)
